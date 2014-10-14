@@ -90,7 +90,12 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class RequestParams implements Serializable {
 
-    public final static String APPLICATION_OCTET_STREAM =
+    /**
+	 * 
+	 */
+	private static final long	serialVersionUID	= 6183707713844325166L;
+
+	public final static String APPLICATION_OCTET_STREAM =
             "application/octet-stream";
 
     public final static String APPLICATION_JSON =
@@ -149,7 +154,12 @@ public class RequestParams implements Serializable {
      * @param value the value string for the initial param.
      */
     public RequestParams(final String key, final String value) {
-        this(new HashMap<String, String>() {{
+        this(new HashMap<String, String>() {/**
+			 * 
+			 */
+			private static final long	serialVersionUID	= -1402640855574053081L;
+
+		{
             put(key, value);
         }});
     }
@@ -328,7 +338,8 @@ public class RequestParams implements Serializable {
      * @param key   the key name for the param, either existing or new.
      * @param value the value string for the new param.
      */
-    public void add(String key, String value) {
+    @SuppressWarnings("unchecked")
+	public void add(String key, String value) {
         if (key != null && value != null) {
             Object params = urlParamsWithObjects.get(key);
             if (params == null) {
@@ -538,7 +549,8 @@ public class RequestParams implements Serializable {
         return lparams;
     }
 
-    private List<BasicNameValuePair> getParamsList(String key, Object value) {
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	private List<BasicNameValuePair> getParamsList(String key, Object value) {
         List<BasicNameValuePair> params = new LinkedList<BasicNameValuePair>();
         if (value instanceof Map) {
             Map map = (Map) value;
@@ -584,7 +596,11 @@ public class RequestParams implements Serializable {
     }
 
     public static class FileWrapper implements Serializable {
-        public final File file;
+        /**
+		 * 
+		 */
+		private static final long	serialVersionUID	= 8955157774102141321L;
+		public final File file;
         public final String contentType;
         public final String customFileName;
 
